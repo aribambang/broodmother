@@ -6,9 +6,10 @@ import Home from './pages/Home';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import Nav from './components/Nav';
-import StripeSuccess from './pages/stripe/success';
-import StripeCancel from './pages/stripe/cancel';
+import StripeSuccess from './pages/stripe/Success';
+import StripeCancel from './pages/stripe/Cancel';
 import Account from './pages/Account';
+import Plans from './pages/Plans';
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
             </AuthRoute>
           }
         />
+        <Route exact path='/plans/:name' element={<Plans />} />
       </Routes>
     </Router>
   );

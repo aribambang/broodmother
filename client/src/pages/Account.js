@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { UserOutlined } from '@ant-design/icons';
 import { UserContext } from '../context';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import moment from 'moment';
 import 'moment/locale/id';
 
 const Account = () => {
+  const navigate = useNavigate();
   const [state, setState] = useContext(UserContext);
   const [subscriptions, setSubscriptions] = useState([]);
 
@@ -46,7 +48,12 @@ const Account = () => {
                     .locale('id')
                     .format('LLLL')}
                 </p>
-                <button className='btn btn-outline-danger'>Access</button>{' '}
+                <button
+                  onClick={() => navigate(`/plans/${subscription.plan.nickname.toLowerCase()}`)}
+                  className='btn btn-outline-danger'
+                >
+                  Access
+                </button>{' '}
                 <button className='btn btn-outline-warning'>Manage Subscription</button>
               </section>
             </div>

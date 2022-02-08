@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { UserContext } from '../../context';
 
-const PriceCard = ({ price, handleSubscription }) => {
+const PriceCard = ({ price, handleSubscription, userSubscriptions }) => {
   const [state] = useContext(UserContext);
 
   const dynamicDescription = (price) => {
@@ -55,7 +55,9 @@ const PriceCard = ({ price, handleSubscription }) => {
             onClick={(e) => handleSubscription(e, price)}
             className={`w-100 btn btn-lg ${buttonStyle()}`}
           >
-            {buttonText()}
+            {userSubscriptions && userSubscriptions.includes(price.id)
+              ? 'Access Plan'
+              : buttonText()}
           </button>
         </div>
       </div>

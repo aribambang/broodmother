@@ -72,3 +72,16 @@ export const subscriptions = async (req, res) => {
     res.status(500).json('Server Error');
   }
 };
+
+export const customPortal = async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id);
+    const portalSession = await stripe.billingPortal.sessions.create({
+      customer: user.stripe_customer_id,
+      return_url: process.env.STRIPE_SUCCESS_URL,
+    });
+    return res.json(portalSession.url);
+  } catch (err) {
+    res.status(500).json('Server Error');
+  }
+};
